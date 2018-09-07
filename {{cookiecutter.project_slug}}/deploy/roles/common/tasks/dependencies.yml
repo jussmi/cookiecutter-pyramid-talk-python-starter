@@ -1,0 +1,56 @@
+###
+# handles app dependencies and virtualenv
+###
+
+- name:
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  become: true
+  with_items:
+    - python3-venv
+    - python-pip
+
+- name:
+  stat:
+    path: "{{ venv_dir }}"
+  register: venv_created
+
+- name: create virtualenv if it does not exist
+  shell: "python3 -m venv {{ venv_dir }}"
+  when: not venv_created.stat.exists
+
+- name: use pip3 to install dependencies
+  shell: "cd {{ app_dir }}; {{ venv_dir }}/bin/pip3 install --upgrade -e ."
+
+- name:
+  stat:
+    path: "{{ yarn_lock_location }}"
+  register: yarn_lock_created
+
+
+- name: get yarn pubkey
+  shell: "cd {{ yarn_lock_dir }}; curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg"
+  become: true
+  when: not yarn_lock_created.stat.exists
+
+- name: add yarn apt-key
+  apt_key:
+    file: "{{ yarn_lock_dir }}/pubkey.gpg"
+    state: present
+  when: not yarn_lock_created.stat.exists
+
+- name: add yarn
+  apt:
+    name: "yarn"
+    state: present
+    update_cache: true
+  become: true
+
+- name: install yarn packages
+  yarn:
+    path: "{{ yarn_lock_dir }}"
+    production: yes
+
+
+
