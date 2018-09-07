@@ -1,0 +1,11 @@
+###
+# Notify slack about deployment
+###
+
+- name: send Slack about deployment
+  slack:
+    token: "{{ slack_token }}"
+    channel: "#deployments"
+    username: "{{ slack_notify_username }}"
+    msg: "Site deployment completed!"
+  delegate_to: localhost

@@ -1,0 +1,30 @@
+deploy_group: deployers
+deploy_user: deployer
+ssh_dir: "{{ cookiecutter.ssh_key_dir }}"
+ssh_key_name: "{{ cookiecutter.ssh_key_name }}"
+
+fqdn: "www.{{ cookiecutter.domain_name.lower().strip() }}"
+web_serve_dir: "/var/www/html"
+ssl_cert_email: "{{ cookiecutter.ssl_cert_email }}"
+
+wsgi_server_port: 6543
+app_name: {{ cookiecutter.project_slug }}
+{% raw %}
+app_dir: "/home/{{ deploy_user }}/{{app_name}}"
+{% endraw %}
+
+local_deploy_key_dir: /home/ubuntu/.ssh
+read_only_deploy_key_name: {{cookiecutter.project_slug }}_read_only_key
+code_repository: {{ cookiecutter.code_repository }}
+
+{% raw %}
+venv_dir: "/home/{{ deploy_user }}/venv"
+{% endraw %}
+
+slack_token: {{ cookiecutter.slack_token }}
+slack_notify_username: {{ cookiecutter.slack_notify_username }}
+
+{% raw %}
+yarn_lock_dir: "{{ app_dir }}/static"
+yarn_lock_location: "{{ yarn_lock_dir }}/yarn.lock"
+{% endraw %}

@@ -1,0 +1,8 @@
+###
+# This playbook deploys the entire site for {{ cookiecutter.project_name }}
+###
+- name: apply standard configuration to server
+  hosts: common
+  user: deployer
+  roles:
+    - common
