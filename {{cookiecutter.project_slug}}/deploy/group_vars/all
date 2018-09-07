@@ -1,6 +1,6 @@
 deploy_group: deployers
 deploy_user: deployer
-ssh_dir: "{{ cookiecutter.ssh_dir }}"
+ssh_dir: "{{ cookiecutter.ssh_key_dir }}"
 ssh_key_name: "{{ cookiecutter.ssh_key_name }}"
 
 fqdn: "www.{{ cookiecutter.domain_name.lower().strip() }}"
@@ -22,6 +22,7 @@ venv_dir: "/home/{{ deploy_user }}/venv"
 {% endraw %}
 
 slack_token: {{ cookiecutter.slack_token }}
+slack_notify_username: {{ cookiecutter.slack_notify_username }}
 
 {% raw %}
 yarn_lock_dir: "{{ app_dir }}/static"

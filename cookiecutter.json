@@ -1,7 +1,7 @@
 {
   "project_name": "required",
   "project_slug": "{{cookiecutter.project_name.lower().strip().replace(' ', '_').replace(':', '_').replace('-', '_').replace('!', '_')}}",
-  "author": "Justin Smith"
+  "author": "Justin Smith",
   "contact_name": "Your company or your name",
   "domain_name": "yourcompany.com",
   "contact_email": "contact@{{cookiecutter.domain_name.lower().strip()}}",
@@ -9,15 +9,15 @@
   "ssl_cert_email": "ssl@{{cookiecutter.domain_name.lower().strip()}}",
   "ssh_key_dir": "/home/ubuntu/.ssh/",
   "ssh_key_name": "do_deploy",
-  "slack_token": "TC2783Q2X/BCNP7NBL3/C37aOHDwO8ME15HxKzFxvR32"
-  "code_repository": "ssh://git@github.com/jussmi/give-code-site.git",
+  "slack_token": "TC2783Q2X/BCNP8MBL3/C37bNHOSO8ME15HxKzFxvR32",
+  "slack_notify_username": "{{ cookiecutter.project_name }} Deployer",
+  "code_repository": "ssh://git@github.com/jussmi/cookiecutter-pyramid-talk-python-starter.git",
   "server_ip": "128.0.0.1",
   "_copy_without_render": [
-      "{{cookiecutter.project_slug}}/static/css",
-      "{{cookiecutter.project_slug}}/static/img",
-      "{{cookiecutter.project_slug}}/static/js",
+      "static/css",
+      "static/img",
+      "static/js",
       "deploy/roles"
-
     ],
   "integrations": "The following integrations are optional [enter to continue]",
   "mailchimp_api": "",
@@ -26,6 +26,6 @@
   "outbound_smtp_password": "",
   "outbound_smtp_server": "",
   "outbound_smtp_port": "587",
-  "rollbar_access_token": "",
+  "rollbar_access_token": ""
 }
 
